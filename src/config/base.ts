@@ -15,12 +15,19 @@ export interface BaseConfig {
 }
 
 export function createBaseConfig(overrides: Partial<BaseConfig> = {}): BaseConfig {
+  const kafkaBrokerEnv = process.env.KAFKA_BROKER;
+  const defaultBrokers = kafkaBrokerEnv 
+    ? kafkaBrokerEnv.split(',').map(b => b.trim()).filter(b => b.length > 0)
+    : ['kafka:9092'];
+  
   const defaultKafkaConfig = {
-    broker: process.env.KAFKA_BROKER 
-      ? process.env.KAFKA_BROKER.split(',')
-      : ['kafka:9092'],
+    broker: defaultBrokers.length > 0 ? defaultBrokers : ['kafka:9092'],
     clientId: 'default-service',
   };
+
+  const finalBroker = overrides.kafka?.broker && Array.isArray(overrides.kafka.broker) && overrides.kafka.broker.length > 0
+    ? overrides.kafka.broker
+    : defaultKafkaConfig.broker;
 
   return {
     nodeEnv: overrides.nodeEnv || process.env.NODE_ENV || 'development',
@@ -28,7 +35,7 @@ export function createBaseConfig(overrides: Partial<BaseConfig> = {}): BaseConfi
       url: overrides.database?.url || process.env.DATABASE_URL || '',
     },
     kafka: {
-      broker: overrides.kafka?.broker || defaultKafkaConfig.broker,
+      broker: finalBroker,
       clientId: overrides.kafka?.clientId || defaultKafkaConfig.clientId,
       consumerGroupId: overrides.kafka?.consumerGroupId,
     },

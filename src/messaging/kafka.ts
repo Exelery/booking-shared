@@ -2,6 +2,10 @@ import { Kafka, Producer, Consumer } from 'kafkajs';
 import { KafkaConfig } from '../config/base.js';
 
 export function createKafkaClient(config: KafkaConfig): Kafka {
+  if (!config.broker || !Array.isArray(config.broker) || config.broker.length === 0) {
+    throw new Error(`Invalid Kafka broker configuration: ${JSON.stringify(config.broker)}. Config: ${JSON.stringify(config)}`);
+  }
+  
   return new Kafka({
     clientId: config.clientId,
     brokers: config.broker,
