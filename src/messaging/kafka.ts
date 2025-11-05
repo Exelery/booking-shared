@@ -1,5 +1,5 @@
 import { Kafka, Producer, Consumer } from 'kafkajs';
-import { KafkaConfig } from '../config/base';
+import { KafkaConfig } from '../config/base.js';
 
 export function createKafkaClient(config: KafkaConfig): Kafka {
   return new Kafka({

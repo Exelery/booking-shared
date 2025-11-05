@@ -1,4 +1,4 @@
-import { BookingStatus } from '../types/booking';
+import { BookingStatus } from '../types/booking.js';
 
 export const KAFKA_TOPICS = {
   BOOKING_CREATED: 'booking.created',

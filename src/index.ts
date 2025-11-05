@@ -1,6 +1,6 @@
-export * from './config/base';
-export * from './database/client';
-export * from './messaging/kafka';
-export * from './types/booking';
-export * from './events/booking-events';
+export * from './config/base.js';
+export * from './database/client.js';
+export * from './messaging/kafka.js';
+export * from './types/booking.js';
+export * from './events/booking-events.js';
 
