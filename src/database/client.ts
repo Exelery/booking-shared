@@ -53,3 +53,4 @@ export async function waitForDb(prisma: PrismaClient, maxRetries = 30, delay = 2
     }
   }
 }
+
