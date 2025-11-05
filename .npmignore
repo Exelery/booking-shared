@@ -1,0 +1,10 @@
+node_modules
+src
+tsconfig.json
+*.tsbuildinfo
+.git
+.gitignore
+README.md
+.env
+.env.local
+
