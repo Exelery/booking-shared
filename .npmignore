@@ -1,10 +1,7 @@
 node_modules
-src
-tsconfig.json
+dist
 *.tsbuildinfo
 .git
-.gitignore
-README.md
 .env
 .env.local
 
