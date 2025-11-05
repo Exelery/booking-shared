@@ -1,6 +1,6 @@
 {
   "name": "@booking/shared",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shared library for booking platform microservices",
   "type": "module",
   "main": "./src/index.ts",
